@@ -25,9 +25,11 @@
 const CODEPOINTS = {
 	// Letters (lowercase ASCII)
 	a: 97,
+	b: 98,
 	c: 99,
 	d: 100,
 	e: 101,
+	f: 102,
 	g: 103,
 	k: 107,
 	l: 108,
@@ -494,6 +496,22 @@ export function isAltLeft(data: string): boolean {
  */
 export function isAltRight(data: string): boolean {
 	return data === "\x1b[1;3C" || data === "\x1bf" || matchesKittySequence(data, ARROW_CODEPOINTS.right, MODIFIERS.alt);
+}
+
+/**
+ * Check if input matches Alt+B (word navigation backwards, readline-style).
+ * Handles multiple formats including Kitty protocol.
+ */
+export function isAltB(data: string): boolean {
+	return data === "\x1b[1;3b" || matchesKittySequence(data, CODEPOINTS.b, MODIFIERS.alt);
+}
+
+/**
+ * Check if input matches Alt+F (word navigation forwards, readline-style).
+ * Handles multiple formats including Kitty protocol.
+ */
+export function isAltF(data: string): boolean {
+	return data === "\x1b[1;3f" || matchesKittySequence(data, CODEPOINTS.f, MODIFIERS.alt);
 }
 
 /**

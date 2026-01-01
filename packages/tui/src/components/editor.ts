@@ -1,7 +1,9 @@
 import type { AutocompleteProvider, CombinedAutocompleteProvider } from "../autocomplete.js";
 import {
+	isAltB,
 	isAltBackspace,
 	isAltEnter,
+	isAltF,
 	isAltLeft,
 	isAltRight,
 	isArrowDown,
@@ -471,11 +473,11 @@ export class Editor implements Component {
 		else if (isDelete(data)) {
 			this.handleForwardDelete();
 		}
-		// Word navigation (Option/Alt + Arrow or Ctrl + Arrow)
-		else if (isAltLeft(data) || isCtrlLeft(data)) {
+		// Word navigation (Option/Alt + Arrow or Ctrl + Arrow or Alt+F/B)
+		else if (isAltLeft(data) || isCtrlLeft(data) || isAltB(data)) {
 			// Word left
 			this.moveWordBackwards();
-		} else if (isAltRight(data) || isCtrlRight(data)) {
+		} else if (isAltRight(data) || isCtrlRight(data) || isAltF(data)) {
 			// Word right
 			this.moveWordForwards();
 		}
